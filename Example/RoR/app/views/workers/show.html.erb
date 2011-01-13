@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @worker.name %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @worker.deleted_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_worker_path(@worker) %> |
+<%= link_to 'Back', workers_path %>
+
+<br/>
+
+<h3>Comments</h3>
+
+<%= render :partial => 'comments' %>
+
+<br />
+
+<%= link_to 'New Comment', new_worker_comment_path(@worker) %> |
+<%= link_to 'Comments', worker_comments_path(@worker) %>

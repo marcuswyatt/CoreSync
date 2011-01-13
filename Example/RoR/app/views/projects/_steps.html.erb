@@ -1,0 +1,24 @@
+<table border="1" cellspacing="1" cellpadding="1">
+  <tr>
+    <th>Name</th>
+    <th>Completed At</th>
+    <th>Sequence Order</th>
+    <th>Deleted At</th>
+    <th>Created At</th>
+    <th>Updated At</th>
+    <th colspan="3">Actions</th>
+  </tr>
+  <% @project.milestones.each do |milestone| %>
+  <tr>
+    <td><%= milestone.title %></td>
+    <td><%= milestone.completed_at %></td>
+    <td><%= milestone.sequence_order %></td>
+    <td><%= milestone.deleted_at %></td>
+    <td><%= milestone.created_at %></td>
+    <td><%= milestone.updated_at %></td>
+    <td><%= link_to 'Show', milestone_path(milestone) %></td>
+    <td><%= link_to 'Edit', edit_milestone_path(milestone) %></td>
+    <td><%= link_to 'Destroy', milestone_path(milestone), :confirm => 'Are you sure?', :method => :delete %></td>    
+  </tr>
+  <% end %>
+</table>

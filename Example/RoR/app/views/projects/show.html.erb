@@ -1,0 +1,41 @@
+<h2>Project Details</h2>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @project.name %>
+</p>
+
+<p>
+  <b>Planned start at:</b>
+  <%= @project.planned_start_at %>
+</p>
+
+<p>
+  <b>Published by:</b>
+  <%= @project.published_by %>
+</p>
+
+<p>
+  <b>Worker:</b>
+  <%= @project.worker.try(:name) %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @project.deleted_at %>
+</p>
+
+<%= link_to 'Back', projects_path %> | 
+<%= link_to 'Edit', edit_project_path(@project) %>
+
+<br/>
+
+<h3>Milestones</h3>
+
+<%= render :partial => 'milestones' %>
+
+<%= link_to 'New Milestone', new_project_milestone_url(@project) %> |
+<%= link_to 'Milestones', project_milestones_url(@project) %>
+

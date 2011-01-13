@@ -1,0 +1,25 @@
+<%= semantic_form_for @project do |f| %>
+  <%= f.inputs "Details" do %>
+    <%= f.input :name, :label => 'Name' %>
+    <%= f.input :template_name %>
+    <%= f.input :published_by, :label => 'Published By' %>
+    <%= f.input :worker, :label => 'Worker' %>
+    <%= f.input :is_prototype, :as => :radio %>
+    <%= f.input :state, :as => :select, :collection => [["Un allocated", "un_allocated"], ["Allocated", "allocated"], ["Assigned", "assigned"]] %>
+    <%= f.input :progress_state, :as => :select, :collection => [["Not Started", "not_started"], ["Started", "started"], ["Completed", "completed"]] %>
+    <%= f.input :planned_duration, :as => :select, :collection => [["1 Hour", 1800], ["2 Hours", 3600], ["3 Hours", 5400]] %>
+    <%= f.input :published_at, :as => :select, :collection => [["Marcus", 1], ["Jono", 2], ["Aisha", 3]] %>
+  <% end %>
+  
+  <%= f.inputs "Pace" do %>
+    <%= f.input :zone, :as => :radio, :collection => [["North", "N"], ["East", "E"], ["South", "S"], ["West", "W"]] %>
+    <%= f.input :requested_at %>
+    <%= f.input :alarm_at %>
+  <% end %>
+  
+  <%= f.inputs "Paranoid" do %>
+    <%= f.input :deleted_at, :label => 'Deleted At' %>
+  <% end %>
+  
+  <%= f.buttons %>
+<% end %>

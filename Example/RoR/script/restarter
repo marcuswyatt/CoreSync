@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+#
+# usage: script/restarter
+#
+# Rails autoloading, while nice in theory, frequently doesn't work. Since Rails 2.3+
+# is so fast when completely reloading the server, I wrote this script to listen to the
+# given directories, and kill/restart the server when any file is changed.
+#
+# It's quick, simple, and it reliably reloads your application when changes are made.
+#
+# To install, just copy it into the scripts directory and set it to be executable.
+#
+# Jonathan Penn (http://www.wavethenavel.com)
+
+POLL_DIRECTORIES = %w(app config db lib)
+POLL_TIME = 0.9 # In Seconds
+SERVER_COMMAND = "touch tmp/restart.txt"
+
+Dir.chdir(File.dirname(__FILE__)+"/..")
+
+@states = {}
+
+def check_for_changes
+  changes = []
+  Dir[*POLL_DIRECTORIES.map{ |i| i + "/**/*" }].each do |file|
+    unless File.symlink?(file)
+      new_time = File.stat(file).mtime
+      if @states[file] != new_time
+        @states[file] = new_time
+        changes << file
+      end
+    end
+  end
+  changes
+end
+
+def emphasized(m)
+  "\e[1;1m\e[41m \e[0m \e[1;1m\e[1m #{m} \e[0m"
+end
+
+p1 = fork { exec SERVER_COMMAND }
+
+Signal.trap(0) { Process.kill("INT", p1) }
+Signal.trap("INT") { $stderr.puts "Shutting down restarter"; exit }
+
+check_for_changes
+
+$stderr.puts "restarter running...watching #{@states.length} files every #{POLL_TIME} seconds."
+
+loop do
+  sleep POLL_TIME
+  changes = check_for_changes
+  unless changes.empty?
+    $stderr.puts emphasized("Changes found...#{changes.inspect}")
+    Process.kill("INT", p1)
+    p1 = fork { exec SERVER_COMMAND }
+  end
+end

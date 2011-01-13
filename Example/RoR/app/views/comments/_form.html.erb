@@ -1,0 +1,21 @@
+<%= semantic_form_for([@worker, @comment], :html => { :multipart => true }) do |form| %>
+
+  <%= form.inputs "Details" do %>
+    <%= form.input :title, :label => 'Title' %>
+    <%= form.input :body, :label => 'Body' %>
+    <%= form.input :read_count, :label => 'Read Count' %>
+    <%= form.input :lat, :label => 'Lat' %>
+    <%= form.input :lng, :label => 'Lng' %>
+    <%= form.input :published_at, :label => 'Published At' %>
+    <%= form.input :last_read, :label => 'Last Read' %>
+    <%= form.input :actioned_at, :label => 'Actioned At' %>
+    <%= form.input :photo, :as => :file, :label => 'Photo' %>
+    <%= form.input :published, :label => 'Published' %>
+  <% end %>
+  
+  <%= form.inputs "Owner" do %>
+    <%= form.input :worker, :label => 'Worker' %>
+  <% end %>
+  
+  <%= form.buttons %>
+<% end %>

@@ -1,0 +1,10 @@
+<%= semantic_form_for([@project, @milestone]) do |form| %>
+  <%= form.inputs do %>
+    <%= form.input :title %>
+    <%= form.input :sequence_order %>
+    <%= form.input :project %>
+    <%= form.input :completed_at %>
+    <%= form.input :deleted_at %>
+  <% end %>
+  <%= form.buttons %>
+<% end %>

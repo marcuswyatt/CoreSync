@@ -1,0 +1,62 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @comment.title %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @comment.body %>
+</p>
+
+<p>
+  <b>Read count:</b>
+  <%= @comment.read_count %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%= @comment.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%= @comment.lng %>
+</p>
+
+<p>
+  <b>Published at:</b>
+  <%= @comment.published_at %>
+</p>
+
+<p>
+  <b>Last read:</b>
+  <%= @comment.last_read %>
+</p>
+
+<p>
+  <b>Actioned at:</b>
+  <%= @comment.actioned_at %>
+</p>
+
+<p>
+  <b>Worker:</b>
+  <%= link_to @worker.name, worker_path(@worker) %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= @comment.photo %>
+  <%= image_tag @comment.photo.url %>
+  <%= image_tag @comment.photo.url(:medium) %>
+  <%= image_tag @comment.photo.url(:thumb) %>
+</p>
+
+<p>
+  <b>Published:</b>
+  <%= @comment.published %>
+</p>
+
+<%= link_to 'Edit', edit_worker_comment_path(@worker, @comment) %> |
+<%= link_to 'Back', worker_comments_path(@worker) %>

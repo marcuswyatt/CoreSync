@@ -1,0 +1,26 @@
+<h1>Listing workers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Deleted at</th>
+    <th colspan="3">Actions</th>
+    <th colspan="2">Comment Actions</th>
+  </tr>
+
+<% @workers.each do |worker| %>
+  <tr>
+    <td><%= worker.name %></td>
+    <td><%= worker.deleted_at %></td>
+    <td><%= link_to 'Show', worker %></td>
+    <td><%= link_to 'Edit', edit_worker_path(worker) %></td>
+    <td><%= link_to 'Destroy', worker, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Comments', worker_comments_path(worker) %></td>
+    <td><%= link_to 'New Comment', new_worker_comment_path(worker) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Worker', new_worker_path %>

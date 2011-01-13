@@ -1,0 +1,33 @@
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Read count</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th>Published at</th>
+    <th>Last read</th>
+    <th>Actioned at</th>
+    <th>Photo</th>
+    <th>Published</th>
+    <th colspan="3">Actions</th>
+  </tr>
+
+<% @worker.comments.each do |comment| %>
+  <tr>
+    <td><%= comment.title %></td>
+    <td><%= comment.body %></td>
+    <td><%= comment.read_count %></td>
+    <td><%= comment.lat %></td>
+    <td><%= comment.lng %></td>
+    <td><%= comment.published_at %></td>
+    <td><%= comment.last_read %></td>
+    <td><%= comment.actioned_at %></td>
+    <td><%= image_tag comment.photo.url(:thumb) %></td>
+    <td><%= comment.published %></td>
+    <td><%= link_to 'Show', worker_comment_path(@worker, comment) %></td>
+    <td><%= link_to 'Edit', edit_worker_comment_path(@worker, comment) %></td>
+    <td><%= link_to 'Destroy', worker_comment_path(@worker, comment), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>

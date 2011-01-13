@@ -1,0 +1,32 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Planned start at</th>
+    <th>Published by</th>
+    <th>Worker</th>
+    <th>Deleted at</th>
+    <th colspan="3">Actions</th>
+    <th colspan="s">Milestone Actions</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.planned_start_at %></td>
+    <td><%= project.published_by %></td>
+    <td><%= link_to project.worker.try(:name), worker_path(project.worker) %></td>
+    <td><%= project.deleted_at %></td>
+    <td><%= link_to 'Show', project %></td>
+    <td><%= link_to 'Edit', edit_project_path(project) %></td>
+    <td><%= link_to 'Destroy', project, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Milestones', project_milestones_url(project) %></td>
+    <td><%= link_to 'New Milestone', new_project_milestone_url(project) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project', new_project_path %>

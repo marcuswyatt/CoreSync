@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Milestone type:</b>
+  <%= @milestone.title %>
+</p>
+
+<p>
+  <b>Completed at:</b>
+  <%= @milestone.completed_at %>
+</p>
+
+<p>
+  <b>Sequence order:</b>
+  <%= @milestone.sequence_order %>
+</p>
+
+<p>
+  <b>Project:</b>
+  <%= link_to @milestone.project.name, project_path(@project) %>
+</p>
+
+<p>
+  <b>Deleted at:</b>
+  <%= @milestone.deleted_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_milestone_path(@project, @milestone) %> |
+<%= link_to 'Back', project_milestones_path(@project) %>

@@ -1,0 +1,12 @@
+<%= semantic_form_for @worker do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :name, :label => 'Name' %>
+    <%= f.input :deleted_at, :label => 'Deleted At' %>
+    <%= f.input :lat %>
+    <%= f.input :lng %>
+    <%= f.input :effective_at %>
+    <%= f.input :speed %>
+    <%= f.input :heading %>
+  <% end %>
+  <%= f.buttons %>
+<% end %>
